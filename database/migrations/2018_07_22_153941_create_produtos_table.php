@@ -20,7 +20,12 @@ class CreateProdutosTable extends Migration
             $table->string('categoria');
             $table->float('preco');
             $table->string('codigo')->unique();
+            $table->integer('idCategoria');
 
+        });
+        Schema::table('produtos', function (Blueprint $table) {
+          $table->foreign('idCategoria')->references('id')->on('categorias')->onDelete('set null');
+          
         });
     }
 
